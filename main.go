@@ -147,7 +147,7 @@ func play() {
 
 var game Data
 
-func Inword(letter string) (flag bool) {
+func Inword2(letter string) (flag bool) {
 	index := []int{}
 	flag = false
 	for i, j := range game.ToFind {
