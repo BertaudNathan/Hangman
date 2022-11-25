@@ -171,6 +171,30 @@ func Inword2(letter string) (flag bool) {
 	return flag
 }
 
+func Inword(letter string) (flag bool) {
+	index := []int{}
+	flag = false
+	for i, j := range game.ToFind {
+		if string(j) == letter {
+			index = append(index, i)
+			game.TriedLetter = append(game.TriedLetter, string(j))
+			flag = true
+		}
+	}
+	if flag == true {
+		decompword := []rune(game.Word)
+		for _, j := range index {
+			decompword[j] = rune(game.ToFind[j])
+		}
+		TemporaryWord := ""
+		for i := range decompword {
+			TemporaryWord += string(decompword[i])
+		}
+		game.Word = TemporaryWord
+	}
+	return flag
+}
+
 /*
 func ReadJson(file string) []byte { //read an encoded json file
 
