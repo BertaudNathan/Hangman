@@ -155,16 +155,17 @@ func Inword(game Data, letter string) (flag bool) {
 			flag = true
 		}
 	}
-	decompword := []rune(game.Word)
-	for _, j := range index {
-		decompword[j] = rune(game.ToFind[j])
+	if flag == true {
+		decompword := []rune(game.Word)
+		for _, j := range index {
+			decompword[j] = rune(game.ToFind[j])
+		}
+		TemporaryWord := ""
+		for i := range decompword {
+			TemporaryWord += string(decompword[i])
+		}
+		game.Word = TemporaryWord
 	}
-	TemporaryWord := ""
-	for i := range decompword {
-		TemporaryWord += string(decompword[i])
-	}
-	game.Word = TemporaryWord
-	fmt.Println(game.Word)
 	return flag
 }
 
