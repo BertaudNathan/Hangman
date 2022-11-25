@@ -145,6 +145,22 @@ func play() {
 
 }
 
+func Inword(game Data, letter string) (flag bool) {
+	index := []int{}
+	flag = false
+	for i, j := range game.ToFind {
+		if string(j) == letter {
+			index = append(index, i)
+			game.TriedLetter = append(game.TriedLetter, string(j))
+			flag = true
+		}
+	}
+	for _, j := range index {
+		game.Word = game.Word[:j-1] + string(game.ToFind[j]) + game.Word[j:]
+	}
+	return flag
+}
+
 /*
 func ReadJson(file string) []byte { //read an encoded json file
 
