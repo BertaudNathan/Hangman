@@ -158,6 +158,7 @@ func Inword(game Data, letter string) (flag bool) {
 	for _, j := range index {
 		game.Word = game.Word[:j-1] + string(game.ToFind[j]) + game.Word[j+1:]
 	}
+	fmt.Println(game.Word)
 	return flag
 }
 
