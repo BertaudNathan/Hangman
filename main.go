@@ -172,7 +172,8 @@ func Inword2(letter string) (flag bool) {
 */
 func Inword(game Data, letter string) (ModifiedWord string) {
 	index := []int{}
-	flag = false
+	flag := false
+	ModifiedWord = game.Word
 	for i, j := range game.ToFind {
 		if string(j) == letter {
 			index = append(index, i)
