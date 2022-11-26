@@ -145,33 +145,31 @@ func play() {
 
 }
 
-var game Data
-
 
 func Inword2(letter string) (flag bool) {
 	index := []int{}
 	flag = false
-	for i, j := range game.ToFind {
+	for i, j := range global.ToFind {
 		if string(j) == letter {
 			index = append(index, i)
-			game.TriedLetter = append(game.TriedLetter, string(j))
+			global.TriedLetter = append(global.TriedLetter, string(j))
 			flag = true
 		}
 	}
 	if flag == true {
-		decompword := []rune(game.Word)
+		decompword := []rune(global.Word)
 		for _, j := range index {
-			decompword[j] = rune(game.ToFind[j])
+			decompword[j] = rune(global.ToFind[j])
 		}
 		TemporaryWord := ""
 		for i := range decompword {
 			TemporaryWord += string(decompword[i])
 		}
-		game.Word = TemporaryWord
+		global.Word = TemporaryWord
 	}
 	return flag
 }
-
+/*
 func Inword(letter string) (flag bool) {
 	index := []int{}
 	flag = false
@@ -195,6 +193,8 @@ func Inword(letter string) (flag bool) {
 	}
 	return flag
 }
+"""
+*/
 
 /*
 func ReadJson(file string) []byte { //read an encoded json file
