@@ -145,7 +145,6 @@ func play() {
 
 }
 
-var game Data
 
 func Inword2(letter string) (flag bool) {
 	index := []int{}
