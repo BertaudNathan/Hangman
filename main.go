@@ -145,7 +145,7 @@ func play() {
 
 }
 
-
+/*
 func Inword2(letter string) (flag bool) {
 	index := []int{}
 	flag = false
@@ -169,7 +169,7 @@ func Inword2(letter string) (flag bool) {
 	}
 	return flag
 }
-
+*/
 func Inword(game Data, letter string) (flag bool) {
 	index := []int{}
 	flag = false
@@ -193,7 +193,6 @@ func Inword(game Data, letter string) (flag bool) {
 	}
 	return flag
 }
-"""
 */
 
 /*
