@@ -193,7 +193,6 @@ func Inword(game Data, letter string) (flag bool) {
 	}
 	return flag
 }
-*/
 
 /*
 func ReadJson(file string) []byte { //read an encoded json file
