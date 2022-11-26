@@ -170,7 +170,7 @@ func Inword2(letter string) (flag bool) {
 	return flag
 }
 */
-func Inword(game Data, letter string) (flag bool) {
+func Inword(game Data, letter string) (ModifiedWord string) {
 	index := []int{}
 	flag = false
 	for i, j := range game.ToFind {
@@ -189,9 +189,9 @@ func Inword(game Data, letter string) (flag bool) {
 		for i := range decompword {
 			TemporaryWord += string(decompword[i])
 		}
-		game.Word = TemporaryWord
+		ModifiedWord = TemporaryWord
 	}
-	return flag
+	return ModifiedWord
 }
 
 /*
