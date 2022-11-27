@@ -200,7 +200,7 @@ func Inword(game Data, letter string) (ModifiedWord string , RemainingLives int)
 }
 
 
-func VerifyAttempt(game Data){
+func VerifyAttempt(game Data) bool{
 	if game.Attempts <=0{
 		return false
 	}
