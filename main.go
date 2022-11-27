@@ -202,9 +202,9 @@ func Inword(game Data, letter string) (ModifiedWord string , RemainingLives int)
 
 func VerifyAttempt(game Data){
 	if game.Attempts <=0{
-		return False
+		return false
 	}
-	return True
+	return true
 }
 
 /*
