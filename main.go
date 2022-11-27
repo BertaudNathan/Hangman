@@ -170,10 +170,11 @@ func Inword2(letter string) (flag bool) {
 	return flag
 }
 */
-func Inword(game Data, letter string) (ModifiedWord string) {
+func Inword(game Data, letter string) (ModifiedWord string , RemainingLives int) {
 	index := []int{}
 	flag := false
 	ModifiedWord = game.Word
+	RemainingLives= game.Attempts
 	for i, j := range game.ToFind {
 		if string(j) == letter {
 			index = append(index, i)
@@ -192,7 +193,18 @@ func Inword(game Data, letter string) (ModifiedWord string) {
 		}
 		ModifiedWord = TemporaryWord
 	}
-	return ModifiedWord
+	if flag ==false{
+		RemainingLives--
+	}
+	return ModifiedWord, RemainingLives
+}
+
+
+func VerifyAttempt(game Data){
+	if game.Attempts <=0{
+		return False
+	}
+	return True
 }
 
 /*
