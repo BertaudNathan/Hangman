@@ -18,9 +18,10 @@ type Data struct {
 	HangmanPositions []string // It can be the array where the positions parsed in "hangman.txt" are stored
 	BasicLetter      []string //letter given at the beggining
 	TriedLetter      []string // Letter which were already tried (success or not)
+	File string // File where the words are
 }
 
-var global = Data{"", "", 10, []string{}, []string{}, []string{}}
+var global = Data{"", "", 10, []string{}, []string{}, []string{}, "words.txt"}
 
 func initialize() {
 	global.ToFind = ChoseWord()
@@ -131,7 +132,7 @@ func duplicateInArray(arr []int) int { //find if there is a duplicate in an arra
 }
 
 func ChoseWord() string { // choose a word in a list
-	words := Read("words.txt")
+	words := Read(global.File)
 	rand.Seed(time.Now().UnixNano())
 	InDWord := rand.Intn(len(words))
 	return string(words[InDWord])
