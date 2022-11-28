@@ -23,12 +23,6 @@ type Data struct {
 
 var global = Data{"", "", 10, []string{}, []string{}, []string{}, "words.txt"}
 
-func initialize() {
-	global.ToFind = ChoseWord()
-	global.Word = CreateFirstStep(global.ToFind)
-
-}
-
 func CreateFirstStep(FinalWord string) string {
 	tmp := FinalWord
 	Basic := []string{}
