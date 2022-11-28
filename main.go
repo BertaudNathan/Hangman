@@ -132,14 +132,6 @@ func ChoseWord() string { // choose a word in a list
 	return string(words[InDWord])
 }
 
-func play() {
-	initialize()
-	fmt.Println(global.ToFind)
-	fmt.Println(global.Word)
-	fmt.Println(global.BasicLetter)
-
-}
-
 /*
 func Inword2(letter string) (flag bool) {
 	index := []int{}
