@@ -19,6 +19,8 @@ type Data struct {
 	BasicLetter      []string //letter given at the beggining
 	TriedLetter      []string // Letter which were already tried (success or not)
 	File string // File where the words are
+	GameSatus bool //true= palying fase = game ended
+
 }
 
 var global = Data{"", "", 10, []string{}, []string{}, []string{}, "words.txt"}
@@ -193,6 +195,7 @@ func VerifyAttempt(game Data) bool{
 	}
 	return true
 }
+
 
 /*
 func ReadJson(file string) []byte { //read an encoded json file
