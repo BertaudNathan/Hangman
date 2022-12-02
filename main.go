@@ -19,7 +19,7 @@ type Data struct {
 	BasicLetter      []string //letter given at the beggining
 	TriedLetter      []string // Letter which were already tried (success or not)
 	File             string   // File where the words are
-	GameSatus        bool     //true= palying fase = game ended
+	GameStatus        bool     //true= palying fase = game ended
 
 	
 }
@@ -165,7 +165,7 @@ func Inword(game Data, letter string) (ModifiedWord string, RemainingLives int) 
 	flag := false
 	ModifiedWord = game.Word
 	RemainingLives = game.Attempts
-	if game.GameSatus == false {
+	if game.GameStatus == false {
 		return ModifiedWord, RemainingLives
 	}
 	for i, j := range game.ToFind {
@@ -194,7 +194,7 @@ func Inword(game Data, letter string) (ModifiedWord string, RemainingLives int) 
 
 func VerifyAttempt(game Data) bool {
 	if game.Attempts <= 0 {
-		game.GameSatus = false
+		game.GameStatus = false
 		return false
 	}
 	return true
