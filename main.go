@@ -18,12 +18,12 @@ type Data struct {
 	HangmanPositions []string // It can be the array where the positions parsed in "hangman.txt" are stored
 	BasicLetter      []string //letter given at the beggining
 	TriedLetter      []string // Letter which were already tried (success or not)
-	File string // File where the words are
-	GameSatus bool //true= palying fase = game ended
+	File             string   // File where the words are
+	GameSatus        bool     //true= palying fase = game ended
 
 }
 
-var global = Data{"", "", 10, []string{}, []string{}, []string{}, "words.txt"}
+var global = Data{"", "", 10, []string{}, []string{}, []string{}, "words.txt", true}
 
 func CreateFirstStep(FinalWord string) string {
 	tmp := FinalWord
@@ -135,35 +135,38 @@ func ChoseWord() string { // choose a word in a list
 }
 
 /*
-func Inword2(letter string) (flag bool) {
-	index := []int{}
-	flag = false
-	for i, j := range global.ToFind {
-		if string(j) == letter {
-			index = append(index, i)
-			global.TriedLetter = append(global.TriedLetter, string(j))
-			flag = true
+	func Inword2(letter string) (flag bool) {
+		index := []int{}
+		flag = false
+		for i, j := range global.ToFind {
+			if string(j) == letter {
+				index = append(index, i)
+				global.TriedLetter = append(global.TriedLetter, string(j))
+				flag = true
+			}
 		}
+		if flag == true {
+			decompword := []rune(global.Word)
+			for _, j := range index {
+				decompword[j] = rune(global.ToFind[j])
+			}
+			TemporaryWord := ""
+			for i := range decompword {
+				TemporaryWord += string(decompword[i])
+			}
+			global.Word = TemporaryWord
+		}
+		return flag
 	}
-	if flag == true {
-		decompword := []rune(global.Word)
-		for _, j := range index {
-			decompword[j] = rune(global.ToFind[j])
-		}
-		TemporaryWord := ""
-		for i := range decompword {
-			TemporaryWord += string(decompword[i])
-		}
-		global.Word = TemporaryWord
-	}
-	return flag
-}
 */
-func Inword(game Data, letter string) (ModifiedWord string , RemainingLives int) {
+func Inword(game Data, letter string) (ModifiedWord string, RemainingLives int) {
 	index := []int{}
 	flag := false
 	ModifiedWord = game.Word
-	RemainingLives= game.Attempts
+	RemainingLives = game.Attempts
+	if game.GameSatus == false {
+		return ModifiedWord, RemainingLives
+	}
 	for i, j := range game.ToFind {
 		if string(j) == letter {
 			index = append(index, i)
@@ -182,29 +185,26 @@ func Inword(game Data, letter string) (ModifiedWord string , RemainingLives int)
 		}
 		ModifiedWord = TemporaryWord
 	}
-	if flag ==false{
+	if flag == false && RemainingLives > 0 {
 		RemainingLives--
 	}
 	return ModifiedWord, RemainingLives
 }
 
-
-func VerifyAttempt(game Data) bool{
-	if game.Attempts <=0{
+func VerifyAttempt(game Data) bool {
+	if game.Attempts <= 0 {
+		game.GameSatus = false
 		return false
 	}
 	return true
 }
 
-
 /*
 func ReadJson(file string) []byte { //read an encoded json file
-
 		content, err := ioutil.ReadFile(file)
 		if err != nil {
 			return nil
 		}
-
 		return content
 	}
 */
@@ -224,7 +224,6 @@ func Hangman(game HangManData) { //main function of the game, which deals with u
 	fmt.Scanln(&attempt)
 	Research(game, attempt)
 }
-
 func Research(game HangManData, letter string) { // research if the given letter is present in the word, or if the word given is the same, or end the game while saving its state if the key-word STOP is entered
 	if letter == "STOP" {
 		b, _ := json.Marshal(game)
@@ -301,9 +300,6 @@ func Research(game HangManData, letter string) { // research if the given letter
 	}
 	Hangman(game)
 }
-
-
-
 func hangmanbegin() { // initialise the hangman, with the first user's input and continue the game with the hangman function
 	var game HangManData
 	args := os.Args[1:]
@@ -362,7 +358,6 @@ func hangmanbegin() { // initialise the hangman, with the first user's input and
 				Basic = append(Basic, string(FinalWord[i]))
 				flag = true
 				break
-
 			}
 		}
 		if !flag {
@@ -383,3 +378,4 @@ func hangmanbegin() { // initialise the hangman, with the first user's input and
 	}
 }
 */
+
