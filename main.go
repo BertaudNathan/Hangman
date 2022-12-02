@@ -21,6 +21,7 @@ type Data struct {
 	File             string   // File where the words are
 	GameSatus        bool     //true= palying fase = game ended
 
+	
 }
 
 var global = Data{"", "", 10, []string{}, []string{}, []string{}, "words.txt", true}
